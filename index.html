@@ -1,267 +1,94 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>
+if(location.hash.startsWith('#access=')){
+  window.__oneJobAccessLink=location.hash.slice(8);
+  history.replaceState(null,'',location.pathname+location.search+'#setup');
+}
+</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>One Job Demo</title>
-  <meta name="description" content="Public demo output for The One Job skill package.">
-  <style>
-    :root {
-      --paper: #fffaf0;
-      --ink: #241b16;
-      --muted: #675b52;
-      --line: #e6d7c2;
-      --coral: #f05a3f;
-      --green: #236f4a;
-      --gold: #b7791f;
-      --blue: #315a8c;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-    main {
-      width: min(1040px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 56px 0 72px;
-    }
-    header {
-      max-width: 780px;
-      margin-bottom: 42px;
-    }
-    .kicker {
-      color: var(--coral);
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      font-weight: 800;
-      font-size: .78rem;
-    }
-    h1, h2, h3 {
-      line-height: 1.12;
-      margin: 0;
-    }
-    h1 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2.6rem, 7vw, 5.8rem);
-      font-weight: 700;
-      letter-spacing: 0;
-      margin-top: 12px;
-    }
-    h2 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(1.7rem, 3vw, 2.4rem);
-      margin: 48px 0 16px;
-    }
-    h3 {
-      font-size: 1.05rem;
-      margin: 28px 0 8px;
-    }
-    p { margin: 10px 0; }
-    .lede {
-      font-size: clamp(1.05rem, 2vw, 1.24rem);
-      color: var(--muted);
-      max-width: 760px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin: 28px 0 12px;
-    }
-    .stat {
-      border: 1px solid var(--line);
-      background: #fffdf8;
-      border-radius: 8px;
-      padding: 16px;
-    }
-    .stat strong {
-      display: block;
-      font-size: 1.55rem;
-      line-height: 1;
-      color: var(--ink);
-    }
-    .stat span {
-      display: block;
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: .92rem;
-    }
-    section {
-      border-top: 1px solid var(--line);
-      padding-top: 8px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 16px 0 24px;
-      background: #fffdf8;
-      border: 1px solid var(--line);
-    }
-    th, td {
-      border-bottom: 1px solid var(--line);
-      padding: 11px 12px;
-      text-align: left;
-      vertical-align: top;
-      font-size: .94rem;
-    }
-    th {
-      background: #f7ecd9;
-      font-weight: 800;
-    }
-    tr:last-child td { border-bottom: 0; }
-    code, pre {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    }
-    pre {
-      white-space: pre-wrap;
-      background: #241b16;
-      color: #fffaf0;
-      padding: 18px;
-      border-radius: 8px;
-      overflow: auto;
-    }
-    .tag {
-      display: inline-block;
-      border-radius: 999px;
-      padding: 3px 9px;
-      font-weight: 800;
-      font-size: .75rem;
-      color: #fff;
-    }
-    .pass { background: var(--green); }
-    .risk { background: var(--gold); }
-    .reject { background: var(--coral); }
-    ul { padding-left: 20px; }
-    .note {
-      border-left: 4px solid var(--blue);
-      background: #fffdf8;
-      padding: 14px 16px;
-      margin: 18px 0;
-      color: var(--muted);
-    }
-    @media (max-width: 760px) {
-      .grid { grid-template-columns: 1fr; }
-      table { display: block; overflow-x: auto; }
-      th, td { min-width: 160px; }
-    }
-  </style>
+  <meta name="description" content="A more intentional job search. Set up your purchased One Job system and run it in your own AI assistant. No API key needed.">
+  <meta name="theme-color" content="#FAF4EA">
+  <title>One Job — Find your next chapter</title>
+  <link rel="icon" href="https://yashasvishailly.com/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..800,0..100,0..1&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="site-shell.css">
+  <script type="module" src="app.mjs"></script>
 </head>
 <body>
-  <main>
-    <header>
-      <div class="kicker">Public Demo</div>
-      <h1>One Job</h1>
-      <p class="lede">A public-safe sample of what The One Job skill package should produce: intake first, filtered sourcing, named contacts, hiring-manager drafts, tracker memory, and Gmail outcome handling.</p>
-    </header>
-
-    <div class="grid" aria-label="Run summary">
-      <div class="stat"><strong>42</strong><span>roles and hiring signals reviewed</span></div>
-      <div class="stat"><strong>6</strong><span>passed the hard filters</span></div>
-      <div class="stat"><strong>1</strong><span>old Gmail rejection matched to tracker</span></div>
+  <div class="brand-stripe" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav site-wrap" aria-label="Site navigation">
+  <div class="navrow">
+    <a class="logo" href="https://yashasvishailly.com/">yashasvi<em>.</em>shailly</a>
+    <div class="navlinks">
+      <a href="https://yashasvishailly.com/products/">Products</a>
+      <a href="https://yashasvishailly.com/media/">Media</a>
+      <a href="https://yashasvishailly.com/testimonials/">Testimonials</a>
+      <a href="https://yashasvishailly.com/about/">About</a>
+      <details class="nav-more has-current">
+        <summary>More</summary>
+        <div class="nav-menu">
+          <a href="https://yashasvishailly.com/work/">How I work</a>
+          <a href="https://yashasvishailly.com/projects/">Projects</a>
+          <a href="https://yashasvishailly.com/blog/">Writing</a>
+          <a href="https://yashasvishailly.com/one-look/">One Look</a>
+      <a href="https://yashasvishailly.com/one-card/">One Card</a>
+          <a href="https://yashasvishailly.com/diagnose/">One Fix</a>
+          <a href="https://yashasvishailly.com/case-studies/">Case studies</a>
+          <a href="https://yashasvishailly.com/kits/">Playbook</a>
+          <a href="https://yashasvishailly.com/theone-jobsearch/" aria-current="page">One Job</a>
+        </div>
+      </details>
+      <a class="btn btn-poppy" style="color:#fff" href="mailto:letsbuild@yashasvishailly.com">Say hello</a>
     </div>
-
-    <section>
-      <h2>Prompt Zero Intake</h2>
-      <p>The skill should not start with sourcing. It should first ask the buyer for the inputs that make filtering possible.</p>
-      <pre>Upload or paste your resume first.
-
-Then answer:
-1. Target role titles
-2. Seniority boundaries
-3. Compensation floor
-4. Acceptable geography
-5. Priority industries
-6. Exclusions
-7. Browser access for LinkedIn and X
-8. Gmail connection for sent-mail, reply, application update, rejection, and interview-status checks
-9. Tracker location</pre>
-    </section>
-
-    <section>
-      <h2>Shortlist</h2>
-      <table>
-        <thead>
-          <tr><th>Rank</th><th>Lead</th><th>Contact</th><th>Why It Passed</th><th>Risk</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>1</td><td>Northstar AI, GTM Enablement Lead</td><td>Decision-maker not identified</td><td><span class="tag pass">Pass</span> GTM systems fit, India remote, AI company</td><td><span class="tag risk">Risk</span> apply path only</td></tr>
-          <tr><td>2</td><td>HorizonOps, Founder Office Growth</td><td>Maya Patel, Operations Lead</td><td><span class="tag pass">Pass</span> founder post maps to operator-plus-growth profile</td><td><span class="tag risk">Risk</span> compensation not public</td></tr>
-          <tr><td>3</td><td>FlowOps, Founder Office Strategy and GTM</td><td>Arun Rao, VP Strategy</td><td><span class="tag pass">Pass</span> public LinkedIn signal names GTM experiments</td><td><span class="tag risk">Risk</span> seniority needs confirmation</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section>
-      <h2>Rejected Roles</h2>
-      <table>
-        <thead>
-          <tr><th>Company</th><th>Role</th><th>Reason</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Savi</td><td>Associate, Executive Team</td><td><span class="tag reject">Reject</span> too junior and below target scope</td></tr>
-          <tr><td>Mesa School of Business</td><td>Program Manager, Growth</td><td><span class="tag reject">Reject</span> 3-6 year program role is too junior</td></tr>
-          <tr><td>Moneycorp</td><td>Strategy Associate</td><td><span class="tag reject">Reject</span> US onsite requirement</td></tr>
-          <tr><td>Example Ventures</td><td>Operator Fellowship</td><td><span class="tag reject">Reject</span> unpaid fellowship; excluded</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section>
-      <h2>Hiring-Manager Draft</h2>
-      <h3>Target: Maya Patel, Operations Lead at HorizonOps</h3>
-      <pre>Hi Maya,
-
-I saw your post about HorizonOps looking for someone to own founder-office growth work.
-
-My background sits close to that lane: marketplace growth, GTM systems, founder-led execution, and turning ambiguous operating problems into weekly pipeline.
-
-One example: I helped scale a managed-account motion by tightening the operating cadence, account visibility, and follow-through between growth and delivery.
-
-If useful, I can send a short note on how I would approach the first 30 days for this role.
-
-Jane Doe</pre>
-      <p class="note">A draft is acceptable only when it names the person, references the hiring signal, uses a relevant proof point, and leaves the final send decision with the buyer.</p>
-    </section>
-
-    <section>
-      <h2>Tracker Memory</h2>
-      <table>
-        <thead>
-          <tr><th>Company</th><th>Applied</th><th>Last Touch</th><th>Outcome</th><th>Status</th><th>Next Step</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Northstar AI</td><td>2026-08-22</td><td>2026-08-28</td><td></td><td>Applied</td><td>Follow up on 2026-09-05</td></tr>
-          <tr><td>HorizonOps</td><td></td><td>2026-08-22</td><td></td><td>Follow-up due</td><td>Draft one bump only</td></tr>
-          <tr><td>FlowOps</td><td></td><td>2026-08-27</td><td>Reply found</td><td>Replied</td><td>Wait</td></tr>
-          <tr><td>ExampleCo</td><td>2026-05-15</td><td>2026-05-15</td><td>Rejected on 2026-08-23</td><td>Rejected</td><td>Close row; no follow-up</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section>
-      <h2>Gmail Outcome Handling</h2>
-      <p>A late rejection should update the original tracker row, even when it arrives months after the application.</p>
-      <pre>Subject: Update on your Chief of Staff application
-Date: 2026-08-23
-From: Priya Shah
-
-Thanks for your interest. We have decided not to move forward.</pre>
-      <ul>
-        <li>Match the email to the existing ExampleCo row.</li>
-        <li>Set the outcome date and status.</li>
-        <li>Stop follow-ups.</li>
-        <li>Do not create a duplicate lead.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Quality Bar</h2>
-      <p>Bad output says "message leadership" or "contact hiring team." Good output names the person, explains why they are credible, cites the source signal, names the risk, and gives a draft that can be edited and sent.</p>
-    </section>
-  </main>
+  </div>
+</nav>
+  <div class="shell">
+    <nav class="product-nav" aria-label="One Job navigation">
+      <a href="#home" data-nav="home">Overview</a>
+      <a href="#setup" data-nav="setup" hidden>Build my search</a>
+      <a href="#sample" data-nav="sample">Sample workspace</a>
+      <a href="#how" data-nav="how">How it works</a>
+      <button class="text-button" id="sign-out" hidden>Sign out</button>
+    </nav>
+    <main id="main" tabindex="-1"></main>
+  </div>
+<footer class="site-footer site-wrap">
+  <div class="foot-row">
+    <div class="foot-links">
+      <a href="https://yashasvishailly.com/products/">Products</a>
+      <a href="https://yashasvishailly.com/diagnose/">One Fix</a>
+      <a href="https://yashasvishailly.com/one-look/">One Look</a>
+      <a href="https://yashasvishailly.com/one-card/">One Card</a>
+      <a href="https://yashasvishailly.com/kits/">Playbook</a>
+      <a href="https://yashasvishailly.com/theone-jobsearch/">One Job</a>
+      <a href="https://yashasvishailly.com/work/">How I work</a>
+      <a href="https://yashasvishailly.com/case-studies/">Case studies</a>
+      <a href="https://yashasvishailly.com/projects/">Projects</a>
+      <a href="https://yashasvishailly.com/blog/">Writing</a>
+      <a href="https://yashasvishailly.com/media/">Media</a>
+      <a href="https://yashasvishailly.com/about/">About</a>
+      <a href="https://yashasvishailly.com/testimonials/">Testimonials</a>
+    </div>
+  </div>
+  <div class="foot-row" style="margin-top:18px">
+    <p class="copyright"><a href="https://www.linkedin.com/in/yashasvishailly/" style="color:inherit;font-weight:600">Yashasvi Shailly</a> &middot; Operator &middot; Observer &middot; Writer &middot; Gurugram, India<br>
+    <a href="mailto:letsbuild@yashasvishailly.com" style="color:var(--violet);font-weight:600">letsbuild@yashasvishailly.com</a></p>
+    <div class="foot-links">
+      <a href="https://yashasvishailly.com/legal/">Terms and Conditions</a>
+      <span class="copyright">&copy; 2026 Yashasvi Shailly</span>
+    </div>
+  </div>
+  <button class="text-button" id="privacy-button">Privacy & local data</button>
+</footer>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <dialog id="info-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Close dialog">×</button><div id="dialog-content"></div></dialog>
+  <noscript><p class="no-script">Enable JavaScript to build your starter kit. You can still read the <a href="https://github.com/yashasvishailly/One-Job">One Job workflow on GitHub</a>.</p></noscript>
 </body>
 </html>
-

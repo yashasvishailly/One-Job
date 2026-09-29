@@ -23,8 +23,9 @@ Open http://127.0.0.1:4173. All asset paths are relative, including when hosted 
 
 ## Files
 
-- `index.html` — accessible app shell and navigation.
+- `index.html` — page shell with the main website’s navbar, wordmark, and footer.
 - `styles.css` — responsive design using the existing cream, ink, poppy, marigold, rani, violet, and green brand palette.
+- `site-shell.css` — shared site layout, Fraunces/Figtree typography, and responsive navigation.
 - `app.mjs` — guided setup, sample workspace, browser persistence, and download interactions.
 - `package.mjs` — profile validation, briefing documents, safe CSV export, and dependency-free ZIP generation.
 - `tests/package.test.mjs` — export, validation, Unicode, CSV, and ZIP interoperability tests.
@@ -34,7 +35,7 @@ The purchase destination is `PURCHASE_URL` in `app.mjs`. It points to the existi
 
 ## Privacy and storage
 
-Inputs stay in browser memory unless the buyer explicitly checks **Remember my preferences on this device**. Only then are they saved under `one-job-preferences-v1` in localStorage. **Privacy & local data → Clear my preferences** clears both the current form and saved preferences. Resume upload, account login, analytics, and backend storage are not implemented. Downloaded files contain the buyer's preferences. Their AI provider receives those files only when the buyer attaches them there.
+Inputs stay in browser memory unless the buyer explicitly checks **Remember my preferences on this device**. Only then are they saved under `one-job-preferences-v1` in localStorage. **Privacy & local data → Clear my preferences** clears both the current form and saved preferences. Resume upload, account login, analytics, and backend storage are not implemented in this standalone preview. Fonts load from Google Fonts; the favicon loads from the main website. Downloaded files contain the buyer's preferences. Their AI provider receives those files only when the buyer attaches them there.
 
 ## Validation
 
@@ -51,3 +52,7 @@ Browser verification covers required input validation, custom roles, flexible co
 This is a setup companion, not a hosted job-search agent. It does not search job databases, send outreach, connect an inbox, schedule runs, or maintain the buyer's live tracker. Those actions belong to the purchased system and the buyer's assistant. An assistant subscription or research tools may have their own costs and usage limits.
 
 To test demand, share the public preview with prospective buyers and send the setup URL to existing buyers. Observe whether they can create a brief and complete their first search using their purchased guide. No analytics are silently installed.
+
+## Website replacement
+
+The replacement is prepared for the existing `/theone-jobsearch/` path in the website repository, with the same checkout retained on-page. This standalone public preview continues linking to that live purchase URL. Shared navigation, footer, fonts, and responsive components now match the parent website.

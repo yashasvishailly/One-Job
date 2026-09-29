@@ -6,31 +6,78 @@
   <meta name="description" content="A more intentional job search. Set up your purchased One Job system and run it in your own AI assistant. No API key needed.">
   <meta name="theme-color" content="#FAF4EA">
   <title>One Job — Find your next chapter</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23FF6B4A'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-size='45' font-family='Georgia' fill='%23231A15'%3E1%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="https://yashasvishailly.com/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..800,0..100,0..1&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="site-shell.css">
   <script type="module" src="app.mjs"></script>
 </head>
 <body>
   <div class="brand-stripe" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
   <a class="skip-link" href="#main">Skip to content</a>
-  <aside class="sidebar">
-    <a class="brand" href="#home" aria-label="One Job home"><span class="brand-mark">1<span>↗</span></span><span>one job<span class="brand-dot">.</span></span></a>
-    <div class="sidebar-label">YOUR NEXT CHAPTER</div>
-    <nav aria-label="Main navigation">
-      <a href="#home" data-nav="home"><span aria-hidden="true">⌂</span> Overview</a>
-      <a href="#setup" data-nav="setup"><span aria-hidden="true">✳</span> Build my search</a>
-      <a href="#sample" data-nav="sample"><span aria-hidden="true">▤</span> Sample workspace <span class="tiny-tag">DEMO</span></a>
-    </nav>
-    <div class="sidebar-bottom">
-      <div class="sidebar-note"><span class="small-spark" aria-hidden="true">✳</span><h3>Your ambition.<br>Your own AI.</h3><p>One Job brings the method.<br>Your assistant does the work.</p><a href="#how">How it works <span aria-hidden="true">↗</span></a></div>
-      <div class="sidebar-footer"><span class="status-dot"></span> Made for the next move <span>v0.1</span></div>
+<nav class="site-nav site-wrap" aria-label="Site navigation">
+  <div class="navrow">
+    <a class="logo" href="https://yashasvishailly.com/">yashasvi<em>.</em>shailly</a>
+    <div class="navlinks">
+      <a href="https://yashasvishailly.com/products/">Products</a>
+      <a href="https://yashasvishailly.com/media/">Media</a>
+      <a href="https://yashasvishailly.com/testimonials/">Testimonials</a>
+      <a href="https://yashasvishailly.com/about/">About</a>
+      <details class="nav-more has-current">
+        <summary>More</summary>
+        <div class="nav-menu">
+          <a href="https://yashasvishailly.com/work/">How I work</a>
+          <a href="https://yashasvishailly.com/projects/">Projects</a>
+          <a href="https://yashasvishailly.com/blog/">Writing</a>
+          <a href="https://yashasvishailly.com/one-look/">One Look</a>
+          <a href="https://yashasvishailly.com/diagnose/">One Fix</a>
+          <a href="https://yashasvishailly.com/case-studies/">Case studies</a>
+          <a href="https://yashasvishailly.com/kits/">Playbook</a>
+          <a href="https://yashasvishailly.com/theone-jobsearch/" aria-current="page">One Job</a>
+        </div>
+      </details>
+      <a class="btn btn-poppy" style="color:#fff" href="mailto:letsbuild@yashasvishailly.com">Say hello</a>
     </div>
-  </aside>
-  <div class="shell">
-    <header class="topbar"><div><span class="breadcrumb">Workspace</span><span class="separator">/</span><span id="page-name">Overview</span></div><span class="local-badge"><span class="status-dot"></span> No API key needed</span></header>
-    <main id="main" tabindex="-1"></main>
-    <footer class="page-footer"><span>One good opportunity can change everything.</span><button class="text-button" id="privacy-button">Privacy & local data</button></footer>
   </div>
+</nav>
+  <div class="shell">
+    <nav class="product-nav" aria-label="One Job navigation">
+      <a href="#home" data-nav="home">Overview</a>
+      <a href="#setup" data-nav="setup">Build my search</a>
+      <a href="#sample" data-nav="sample">Sample workspace</a>
+      <a href="#how" data-nav="how">How it works</a>
+    </nav>
+    <main id="main" tabindex="-1"></main>
+  </div>
+<footer class="site-footer site-wrap">
+  <div class="foot-row">
+    <div class="foot-links">
+      <a href="https://yashasvishailly.com/products/">Products</a>
+      <a href="https://yashasvishailly.com/diagnose/">One Fix</a>
+      <a href="https://yashasvishailly.com/one-look/">One Look</a>
+      <a href="https://yashasvishailly.com/kits/">Playbook</a>
+      <a href="https://yashasvishailly.com/theone-jobsearch/">One Job</a>
+      <a href="https://yashasvishailly.com/work/">How I work</a>
+      <a href="https://yashasvishailly.com/case-studies/">Case studies</a>
+      <a href="https://yashasvishailly.com/projects/">Projects</a>
+      <a href="https://yashasvishailly.com/blog/">Writing</a>
+      <a href="https://yashasvishailly.com/media/">Media</a>
+      <a href="https://yashasvishailly.com/about/">About</a>
+      <a href="https://yashasvishailly.com/testimonials/">Testimonials</a>
+    </div>
+  </div>
+  <div class="foot-row" style="margin-top:18px">
+    <p class="copyright"><a href="https://www.linkedin.com/in/yashasvishailly/" style="color:inherit;font-weight:600">Yashasvi Shailly</a> &middot; Operator &middot; Observer &middot; Writer &middot; Gurugram, India<br>
+    <a href="mailto:letsbuild@yashasvishailly.com" style="color:var(--violet);font-weight:600">letsbuild@yashasvishailly.com</a></p>
+    <div class="foot-links">
+      <a href="https://yashasvishailly.com/legal/">Terms and Conditions</a>
+      <span class="copyright">&copy; 2026 Yashasvi Shailly</span>
+    </div>
+  </div>
+  <button class="text-button" id="privacy-button">Privacy & local data</button>
+</footer>
   <div id="toast" role="status" aria-live="polite"></div>
   <dialog id="info-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Close dialog">×</button><div id="dialog-content"></div></dialog>
   <noscript><p class="no-script">Enable JavaScript to build your starter kit. You can still read the <a href="https://github.com/yashasvishailly/One-Job">One Job workflow on GitHub</a>.</p></noscript>

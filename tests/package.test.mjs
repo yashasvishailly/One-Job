@@ -57,6 +57,15 @@ print(json.dumps(list(csv.reader(sys.stdin))))`],{input:data});
 });
 test('untrusted saved settings cannot add roles or unexpected configuration',()=>{
   const p=normalizeProfile({roles:['Chief of Staff','<script>'],assistant:'unexpected',currency:'garbage',remember:'true',exclusions:'x'.repeat(3000)});
-  assert.deepEqual(p.roles,['Chief of Staff']);assert.equal(p.assistant,'Claude');
+  assert.deepEqual(p.roles,['Chief of Staff']);assert.equal(p.assistant,'Not decided yet');
   assert.equal(p.currency,'INR');assert.equal(p.remember,false);assert.equal(p.exclusions.length,1500);
+});
+
+test('assistant choice survives normalization and exported setup',()=>{
+  for(const assistant of ['Claude','Gemini','Copilot','Another assistant']){
+    const p=normalizeProfile({...valid(),assistant});
+    assert.equal(p.assistant,assistant);
+    assert.equal(profileData(p).assistant,assistant);
+    assert.ok(setupDocument(p).includes(`"assistant": "${assistant}"`));
+  }
 });

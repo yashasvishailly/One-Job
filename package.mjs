@@ -2,7 +2,8 @@
 export const ROLE_OPTIONS = ['Chief of Staff', "Founder’s Office", 'GTM & Growth', 'Revenue Operations', 'Strategy & Operations', 'First Generalist'];
 export const CURRENCIES = ['INR', 'USD', 'GBP', 'EUR', 'SGD', 'AED'];
 export const STATUSES = ['Saved', 'Applied', 'Contacted', 'Replied', 'Interviewing', 'Closed'];
-export const EMPTY_PROFILE = Object.freeze({name:'', roles:[], customRole:'', experience:'', locations:'', workStyle:'Any arrangement', salary:'', currency:'INR', flexible:false, industries:'', exclusions:'', assistant:'Claude', remember:false});
+export const ASSISTANTS = ['Not decided yet', 'Claude', 'Gemini', 'Copilot', 'Another assistant'];
+export const EMPTY_PROFILE = Object.freeze({name:'', roles:[], customRole:'', experience:'', locations:'', workStyle:'Any arrangement', salary:'', currency:'INR', flexible:false, industries:'', exclusions:'', assistant:'Not decided yet', remember:false});
 
 export function normalizeProfile(raw = {}) {
   const p = {...EMPTY_PROFILE, roles:[]};
@@ -10,7 +11,7 @@ export function normalizeProfile(raw = {}) {
   p.roles = Array.isArray(raw.roles) ? ROLE_OPTIONS.filter(role => raw.roles.includes(role)) : [];
   if (CURRENCIES.includes(raw.currency)) p.currency = raw.currency;
   if (['Any arrangement','Remote','Hybrid','On-site'].includes(raw.workStyle)) p.workStyle = raw.workStyle;
-  p.assistant = raw.assistant === 'Another assistant' ? raw.assistant : 'Claude';
+  if (ASSISTANTS.includes(raw.assistant)) p.assistant = raw.assistant;
   p.flexible = raw.flexible === true;
   p.remember = raw.remember === true;
   return p;
@@ -26,7 +27,7 @@ export function validateProfile(p, step = 2) {
 }
 export function profileData(p) {
   return {
-    name:p.name || '[Your Name]', target_roles:allRoles(p), seniority_and_scope:p.experience,
+    name:p.name || '[Your Name]', assistant:p.assistant, target_roles:allRoles(p), seniority_and_scope:p.experience,
     acceptable_locations:p.locations, work_arrangement:p.workStyle,
     annual_compensation_floor:p.flexible ? {flexible:true} : {currency:p.currency, amount:Number(p.salary)},
     priority_industries:p.industries || 'Open to any industry', exclusions:p.exclusions || 'No additional exclusions specified',

@@ -108,3 +108,15 @@ input,select,textarea{max-width:100%}
 #access-message{font-size:.9rem;margin-top:18px;overflow-wrap:anywhere}
 #sign-out{margin-left:auto;font-size:.8rem}.product-nav [hidden]{display:none!important}
 @media(max-width:700px){.access-grid{grid-template-columns:1fr}.access-grid .how-card{padding:24px}.product-nav{justify-content:flex-start}}
+
+/* Show the product value before checkout details. */
+.purchase-benefits{list-style:none;padding:0;margin:30px 0;display:grid;grid-template-columns:1fr 1fr;gap:24px;text-align:left}
+.purchase-benefits li{border-top:1px solid var(--line);padding-top:16px}
+.purchase-benefits strong{display:block;font-size:1rem;margin-bottom:7px}
+.purchase-benefits span{display:block;color:var(--muted);font-size:.9rem;line-height:1.7}
+.say .purchase-includes{font-size:.85rem;line-height:1.7;margin-bottom:30px}
+@media(max-width:640px){.purchase-benefits{grid-template-columns:1fr;gap:18px}}
+
+.home-how{margin-top:52px;scroll-margin-top:24px}
+.method-note{font-size:.85rem;line-height:1.8;color:var(--muted);margin:22px 0}
+.home-how:focus{outline:none}

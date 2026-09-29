@@ -22,7 +22,7 @@ This sample uses a fictional buyer:
 
 | Field | Value |
 | --- | --- |
-| Name | Asha Mehta |
+| Name | Jane Doe |
 | Current lane | GTM and founder's office operator |
 | Experience | 8 years across marketplace, SaaS, and AI startups |
 | Target roles | Chief of Staff, Founder Office, GTM Strategy, Revenue Operations, International Expansion |
@@ -104,7 +104,7 @@ One example: I helped scale a managed-account motion by tightening the operating
 
 If useful, I can send a short note on how I would approach the first 30 days for this role.
 
-Yashasvi
+Jane Doe
 ```
 
 Why this draft is acceptable:
@@ -132,7 +132,7 @@ I have worked across marketplace, SaaS, and AI-adjacent environments where the j
 
 Open to a quick conversation if this is still active.
 
-Yashasvi
+Jane Doe
 ```
 
 ## Tracker Update

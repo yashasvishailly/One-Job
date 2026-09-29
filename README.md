@@ -24,7 +24,7 @@ Open http://127.0.0.1:4173. All asset paths are relative, including when hosted 
 ## Files
 
 - `index.html` — accessible app shell and navigation.
-- `styles.css` — responsive cream, coral, and sage design.
+- `styles.css` — responsive design using the existing cream, ink, poppy, marigold, rani, violet, and green brand palette.
 - `app.mjs` — guided setup, sample workspace, browser persistence, and download interactions.
 - `package.mjs` — profile validation, briefing documents, safe CSV export, and dependency-free ZIP generation.
 - `tests/package.test.mjs` — export, validation, Unicode, CSV, and ZIP interoperability tests.

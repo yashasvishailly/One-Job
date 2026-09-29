@@ -1,6 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>
+if(location.hash.startsWith('#access=')){
+  window.__oneJobAccessLink=location.hash.slice(8);
+  history.replaceState(null,'',location.pathname+location.search+'#setup');
+}
+</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="A more intentional job search. Set up your purchased One Job system and run it in your own AI assistant. No API key needed.">
@@ -46,9 +52,10 @@
   <div class="shell">
     <nav class="product-nav" aria-label="One Job navigation">
       <a href="#home" data-nav="home">Overview</a>
-      <a href="#setup" data-nav="setup">Build my search</a>
+      <a href="#setup" data-nav="setup" hidden>Build my search</a>
       <a href="#sample" data-nav="sample">Sample workspace</a>
       <a href="#how" data-nav="how">How it works</a>
+      <button class="text-button" id="sign-out" hidden>Sign out</button>
     </nav>
     <main id="main" tabindex="-1"></main>
   </div>

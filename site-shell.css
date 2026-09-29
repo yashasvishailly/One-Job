@@ -102,3 +102,9 @@ input,select,textarea{max-width:100%}
   .hero h1{font-size:2.25rem}.hero .actions{gap:14px}.preview-row{gap:8px}.preview-row .pill{padding-inline:5px}
   .purchase-section{padding-inline:18px}.say{padding-inline:16px}.step-card{grid-template-columns:24px 1fr;column-gap:8px}
 }
+
+.access-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+.access-grid .how-card{padding:30px}.access-grid input{font-size:1rem}.access-grid .field{margin-top:20px}
+#access-message{font-size:.9rem;margin-top:18px;overflow-wrap:anywhere}
+#sign-out{margin-left:auto;font-size:.8rem}.product-nav [hidden]{display:none!important}
+@media(max-width:700px){.access-grid{grid-template-columns:1fr}.access-grid .how-card{padding:24px}.product-nav{justify-content:flex-start}}

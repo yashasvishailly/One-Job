@@ -1,200 +1,55 @@
-# One Job
+# One Job — buyer setup MVP
 
-Public demo for The One Job skill package.
+A responsive product page and guided onboarding companion for the paid [One Job system](https://yashasvishailly.com/theone-jobsearch/). Buyers run the system in their own AI assistant. This site makes no AI API calls.
 
-The One Job is a job-search operating system for non-linear operators looking for Chief of Staff, founder's office, GTM, growth, RevOps, international expansion, EIR, and first-generalist startup roles.
+## Buyer journey
 
-This public repo does not include the paid skill package. It shows what a good run should look like after the buyer installs the delivered Google Doc or private GitHub package.
+1. Visitors explore the public sample or follow **Get One Job** to the existing checkout.
+2. **Build my search** is hidden until a purchase session is verified by the backend. Direct `#setup` links show purchase and buyer sign-in options.
+3. Verified buyers enter preferences and download a personalized brief, blank tracker, or setup ZIP.
+4. Buyers attach their purchased guide, brief, and resume in their own assistant and paste the starting prompt.
 
-## What The Skill Does
+The private paid guide is never included in this repository or generated downloads. The production website and payment Worker changes are maintained in the website repository. This public frontend requires that backend; changing browser storage cannot authorize server downloads.
 
-1. Starts with Prompt Zero and asks for the buyer's resume, profile, target roles, compensation floor, geography, industries, exclusions, browser access, LinkedIn/X access, and Gmail connection.
-2. Runs a weekly sweep across company signals, founder posts, VC portfolio hiring, operator newsletters, talent networks, job boards, LinkedIn, and X.
-3. Rejects weak fits instead of padding the list.
-4. Names a real person for every network row or marks the contact gap.
-5. Drafts specific hiring-manager outreach for the strongest leads.
-6. Maintains a tracker across weeks and months.
-7. Reads Gmail for sent mail, replies, recruiter updates, interview notes, application updates, rejection emails, and late outcomes.
+## Run locally
 
-## Demo Profile
+No install or build step is required:
 
-This sample uses a fictional buyer:
-
-| Field | Value |
-| --- | --- |
-| Name | Jane Doe |
-| Current lane | GTM and founder's office operator |
-| Experience | 8 years across marketplace, SaaS, and AI startups |
-| Target roles | Chief of Staff, Founder Office, GTM Strategy, Revenue Operations, International Expansion |
-| Geography | India remote, Bengaluru, Mumbai, London remote, Singapore remote |
-| Compensation floor | Must match senior operator scope |
-| Exclusions | Pure EA roles, junior program manager roles, US-only onsite roles, unpaid fellowships |
-| Platforms | Gmail, LinkedIn, X |
-
-## Prompt Zero Intake
-
-Before sourcing, the skill should ask:
-
-```text
-To run this properly, upload or paste your resume first.
-
-Then answer these setup questions:
-1. What role titles should I target?
-2. What seniority level is too junior or too senior?
-3. What is your compensation floor?
-4. Which geographies are acceptable?
-5. Which industries should I prioritize?
-6. Which companies, industries, or role types should I exclude?
-7. Can I use the browser for LinkedIn and X checks?
-8. Is Gmail connected for sent-mail, reply, application update, rejection, and interview-status checks?
-9. Where should I keep the tracker?
-
-I will not start the weekly sweep until these are clear.
+```sh
+python3 -m http.server 4173 --bind 127.0.0.1
 ```
 
-## Sample Weekly Output
+Open http://127.0.0.1:4173. Asset paths work below a repository path. Public pages and the locked buyer screen work locally. Authenticated setup and payment APIs allow only the production website origin; local and temporary previews are not end-to-end checkout environments.
 
-Run date: 2026-08-28
+## Files
 
-Summary:
+- `index.html`, `styles.css`, `site-shell.css`: responsive page with the parent website’s navbar, footer, fonts, and colours.
+- `app.mjs`: routes, buyer forms, sample workspace, and downloads.
+- `buyer-access.mjs`: session verification, sign-in requests, and authenticated setup API calls.
+- `package.mjs`: public profile validation and sample CSV helpers; personalized export generation lives on the server.
+- `tests/`: public module and authentication-client regression tests.
+- `docs/sample-report.md`: original public sample report.
 
-- 42 roles or signals reviewed.
-- 6 passed the hard filters.
-- 4 rejected for seniority mismatch.
-- 11 rejected for geography.
-- 9 rejected for compensation or scope mismatch.
-- 8 rejected as weak or unverifiable hiring signals.
-- 4 duplicates reconciled against the tracker.
-- 2 outreach drafts prepared.
-- 1 old rejection email matched back to a tracker row.
+The standalone purchase link goes to the existing production purchase form. The website replacement retains checkout on-page.
 
-## Shortlist
+## Privacy and access
 
-| Rank | Company | Role | Decision | Contact | Why It Passed | Risk |
-| --- | --- | --- | --- | --- | --- | --- |
-| 1 | Northstar AI | GTM Enablement Lead, India Remote | Apply | Decision-maker not identified; apply through careers page | Strong GTM systems fit; AI company; India remote | No named hiring manager found |
-| 2 | HorizonOps | Founder Office, Growth | Network | Maya Patel, Operations Lead | Founder post mentions hiring for a growth operator; strong marketplace plus GTM overlap | Compensation not public |
-| 3 | FlowOps | Founder Office Strategy and GTM | Network | Arun Rao, VP Strategy | Public LinkedIn post asks for someone to own GTM experiments and founder-office projects | Needs seniority confirmation |
+Preferences stay in browser memory unless the buyer chooses **Remember my preferences on this device**, which saves them in localStorage. **Privacy & local data → Clear my preferences** clears both. When generating downloads, preferences are sent to the One Job backend, processed for that request, and not stored or logged by application code. No resume is uploaded and no AI provider is contacted.
 
-## Rejected Roles
+Buyer sessions last up to 24 hours and are kept in sessionStorage for the current tab. Returning buyers request a 15-minute email link using their purchase email and payment reference. The server verifies the delivered-purchase record for sessions and exports. Sign-in tokens are stored hashed on the backend. The existing email service delivers sign-in links.
 
-| Company | Role | Rejection Reason |
-| --- | --- | --- |
-| Savi | Associate, Executive Team | Too junior and below target scope |
-| Mesa School of Business | Program Manager, Growth | Good domain, but 3-6 year program role is too junior |
-| Moneycorp | Strategy Associate | US onsite requirement |
-| Example Ventures | Operator Fellowship | Unpaid fellowship; excluded |
+The standalone page adds no analytics. The production replacement retains the site's explicit analytics events but disables automatic field capture and session recording. Fonts load from Google Fonts and the favicon from the main site. Generated files contain the buyer's preferences; their AI provider receives them only when the buyer attaches them.
 
-## Hiring-Manager Drafts
+## Validation and scope
 
-### Draft 1: HorizonOps
-
-Target: Maya Patel, Operations Lead
-
-Channel: Email or LinkedIn
-
-```text
-Hi Maya,
-
-I saw your post about HorizonOps looking for someone to own founder-office growth work.
-
-My background sits close to that lane: marketplace growth, GTM systems, founder-led execution, and turning ambiguous operating problems into weekly pipeline.
-
-One example: I helped scale a managed-account motion by tightening the operating cadence, account visibility, and follow-through between growth and delivery.
-
-If useful, I can send a short note on how I would approach the first 30 days for this role.
-
-Jane Doe
+```sh
+npm test
 ```
 
-Why this draft is acceptable:
+Backend export, authorization, and mocked checkout tests live in the website repository. No real charge, coupon redemption, or delivery is performed by these tests.
 
-- Names a real person.
-- References the specific hiring signal.
-- Uses one relevant proof point.
-- Does not pretend there is a formal job post.
-- Leaves the final send decision with the buyer.
+This is a setup companion. It does not source live jobs, send outreach, connect an inbox, schedule runs, or maintain a live tracker. Those actions belong to the purchased system and the buyer's assistant, whose plan may have separate costs and usage limits.
 
-### Draft 2: FlowOps
+## Release status
 
-Target: Arun Rao, VP Strategy
-
-Channel: LinkedIn
-
-```text
-Hi Arun,
-
-I saw your note about FlowOps needing someone across founder-office strategy and GTM execution.
-
-That combination is where I have done my best work: turning unclear growth priorities into operating rhythm, experiments, partner motion, and follow-through.
-
-I have worked across marketplace, SaaS, and AI-adjacent environments where the job was not just planning the GTM motion, but making sure it moved every week.
-
-Open to a quick conversation if this is still active.
-
-Jane Doe
-```
-
-## Tracker Update
-
-The tracker keeps one row per lead and survives across runs.
-
-| Row ID | Date Added | Last Seen Date | Company | Role | Contact | Channel | Applied Date | Outreach Sent Date | Reply Date | Outcome Date | Status | Follow-up Date | Notes |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 20260821-northstar-ai-gtm-enablement-lead | 2026-08-21 | 2026-08-28 | Northstar AI | GTM Enablement Lead | Decision-maker not identified | Application form | 2026-08-22 |  |  |  | Applied | 2026-09-05 | Seen again this week; not duplicated |
-| 20260821-horizonops-founder-office | 2026-08-21 | 2026-08-28 | HorizonOps | Founder Office, Growth | Maya Patel, Operations Lead | Email |  | 2026-08-22 |  |  | Follow-up due | 2026-08-29 | One follow-up draft allowed |
-| 20260821-flowops-strategy-gtm | 2026-08-21 | 2026-08-28 | FlowOps | Founder Office Strategy and GTM | Arun Rao, VP Strategy | LinkedIn |  | 2026-08-23 | 2026-08-27 |  | Replied |  | Reply found in LinkedIn |
-| 20260514-exampleco-chief-of-staff | 2026-05-14 | 2026-05-14 | ExampleCo | Chief of Staff | Priya Shah, Recruiter | Email | 2026-05-15 | 2026-05-15 |  | 2026-08-23 | Rejected |  | Rejection email found three months later |
-
-## Gmail Outcome Handling
-
-Example Gmail finding:
-
-```text
-Subject: Update on your Chief of Staff application
-Date: 2026-08-23
-From: Priya Shah
-
-Thanks for your interest. We have decided not to move forward.
-```
-
-Correct system behavior:
-
-- Match the email to the existing ExampleCo tracker row.
-- Set `Outcome Date` to `2026-08-23`.
-- Set `Status` to `Rejected`.
-- Stop follow-ups.
-- Do not create a duplicate ExampleCo row.
-- Mention the outcome in the weekly summary.
-
-## Quality Bar
-
-A result is not good enough when it says:
-
-- "message leadership"
-- "contact hiring team"
-- "reach out to GTM leader"
-- "apply if interested"
-
-A result is good enough when it says:
-
-- who to contact
-- why that person is credible
-- what signal made the lead real
-- why the role passed
-- what could still break the fit
-- what draft should be sent
-- what changed in the tracker
-
-## What This Demo Proves
-
-This demo shows the buyer experience the paid skill package should create:
-
-- intake before action
-- hard filtering before drafting
-- named contacts where possible
-- no hallucinated leads
-- outreach drafts after filtering
-- tracker memory across months
-- Gmail rejection and application update handling
-
+The replacement is prepared for `/theone-jobsearch/`. Deploy the updated payment Worker before publishing the replacement page. A preview or merged frontend alone does not deploy that Worker or prove live payment-to-delivery operation.

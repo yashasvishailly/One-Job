@@ -52,4 +52,14 @@ This is a setup companion. It does not source live jobs, send outreach, connect 
 
 ## Release status
 
-The replacement is prepared for `/theone-jobsearch/`. Deploy the updated payment Worker before publishing the replacement page. A preview or merged frontend alone does not deploy that Worker or prove live payment-to-delivery operation.
+The replacement is prepared for `/theone-jobsearch/`, but release is blocked on
+its buyer-access backend. The maintained worker source reviewed on 22 October
+2026 does not implement the `/api/access` routes used by this frontend. Implement
+and test the [backend contract](docs/backend-contract.md) before publishing a
+replacement checkout page. A preview or merged frontend cannot provide those
+routes or prove live payment-to-delivery operation.
+
+Failed email-link exchanges retain a pending copy for reload and retry. Once an
+exchange issues a session, retries verify that session instead of exchanging the
+one-time link again. Definitively expired or rejected links are cleared. Browser
+storage still cannot authorize downloads.

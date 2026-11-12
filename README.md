@@ -52,4 +52,19 @@ This is a setup companion. It does not source live jobs, send outreach, connect 
 
 ## Release status
 
-The replacement is prepared for `/theone-jobsearch/`. Deploy the updated payment Worker before publishing the replacement page. A preview or merged frontend alone does not deploy that Worker or prove live payment-to-delivery operation.
+The maintained website repository now implements all five `/api/access` routes.
+The frontend and that real backend pass the local [integration suite](docs/backend-contract.md),
+including a lost exchange response followed by a reload. Backend code is maintained
+in `yashasvishailly-com`, not in this standalone repository.
+
+Authenticated setup supports only `https://yashasvishailly.com`; this standalone
+GitHub Pages site remains a public companion, not a second authenticated origin.
+The production website has a separate copy of the frontend, so merging this PR
+does not update its buyer recovery behavior. Before release, apply the recovery
+fix there and verify the deployed payment-to-email-to-export journey with an
+authorized test buyer. Local tests do not establish live fulfillment.
+
+Failed email-link exchanges retain a pending copy for reload and retry. Once an
+exchange issues a session, retries verify that session instead of exchanging the
+short-lived link again. Definitively expired or rejected links are cleared. Browser
+storage still cannot authorize downloads.

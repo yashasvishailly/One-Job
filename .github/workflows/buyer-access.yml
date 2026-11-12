@@ -1,13 +1,10 @@
-name: Buyer access contract
-
+name: Buyer access frontend
 on:
   pull_request:
   push:
     branches: [main]
-
 permissions:
   contents: read
-
 jobs:
   buyer-access:
     runs-on: ubuntu-latest
@@ -23,14 +20,6 @@ jobs:
           node --check app.mjs
           node --check buyer-access.mjs
           npm test
-      - name: Check out the verified backend contract
-        uses: actions/checkout@v4
-        with:
-          repository: yashasvishailly/yashasvishailly-com
-          ref: 1fb69c0fad52166e628c924760504b4878b4424a
-          path: _backend
-          persist-credentials: false
-      - name: Test frontend against the real backend with fake storage and email
-        env:
-          ONE_JOB_WEBSITE_ROOT: _backend
-        run: npm run test:backend
+# The real backend integration suite runs inside the private website repository.
+# Its workflow pins this public frontend's exact commit. Do not add a private
+# backend token here or publish backend source to this public repository.
